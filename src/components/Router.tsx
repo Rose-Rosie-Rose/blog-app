@@ -1,25 +1,25 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import {
-  Home,
+  HomePage,
   LoginPage,
-  PostDetail,
-  PostEdit,
-  PostList,
-  PostNew,
-  Profile,
+  PostDetailPage,
+  PostEditPage,
+  PostListPage,
+  PostNewPage,
+  ProfilePage,
 } from "../pages";
 
 export const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/posts" element={<PostList />} />
-        <Route path="/posts/:id" element={<PostDetail />} />
-        <Route path="/posts/new" element={<PostNew />} />
-        <Route path="/posts/edit/:ud" element={<PostEdit />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/posts" element={<PostListPage />} />
+        <Route path="/posts/:id" element={<PostDetailPage />} />
+        <Route path="/posts/new" element={<PostNewPage />} />
+        <Route path="/posts/edit/:ud" element={<PostEditPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
