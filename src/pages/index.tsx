@@ -5,3 +5,4 @@ export * from "./posts/postNew";
 export * from "./posts/postEdit";
 export * from "./profile";
 export * from "./login";
+export * from "./signUp";

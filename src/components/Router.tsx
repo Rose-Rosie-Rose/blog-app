@@ -8,6 +8,7 @@ import {
   PostListPage,
   PostNewPage,
   ProfilePage,
+  SignUpPage,
 } from "../pages";
 
 export const Router = () => {
@@ -21,6 +22,7 @@ export const Router = () => {
         <Route path="/posts/edit/:ud" element={<PostEditPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </>
