@@ -4,3 +4,4 @@ export * from "./posts/postDetail";
 export * from "./posts/postNew";
 export * from "./posts/postEdit";
 export * from "./profile";
+export * from "./login";

@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import {
   Home,
+  LoginPage,
   PostDetail,
   PostEdit,
   PostList,
@@ -19,6 +20,7 @@ export const Router = () => {
         <Route path="/posts/new" element={<PostNew />} />
         <Route path="/posts/edit/:ud" element={<PostEdit />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </>
