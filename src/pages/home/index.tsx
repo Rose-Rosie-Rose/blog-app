@@ -10,6 +10,10 @@ export const HomePage = () => {
           <Link to="profile">프로필</Link>
         </div>
       </header>
+      <div className="post__navigation">
+        <div className="post__navigation--active">전체</div>
+        <div>나의 글</div>
+      </div>
       <div className="post__list">
         {[...Array(10)].map((e, index) => (
           <div key={index} className="post__box">
@@ -30,9 +34,9 @@ export const HomePage = () => {
         ))}
       </div>
       <footer>
-        <div>Menu 1</div>
-        <div>Menu 2</div>
-        <div>Menu 3</div>
+        <Link to=" ">Menu 1</Link>
+        <Link to="">Menu 2</Link>
+        <Link to="">Menu 3</Link>
       </footer>
     </>
   );
