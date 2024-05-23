@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import {
   HomePage,
   LoginPage,
-  PostDetailPage,
+  DetailPage,
   PostEditPage,
   PostListPage,
   PostNewPage,
@@ -17,7 +17,7 @@ export const Router = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<PostListPage />} />
-        <Route path="/posts/:id" element={<PostDetailPage />} />
+        <Route path="/posts/:id" element={<DetailPage />} />
         <Route path="/posts/new" element={<PostNewPage />} />
         <Route path="/posts/edit/:ud" element={<PostEditPage />} />
         <Route path="/profile" element={<ProfilePage />} />
