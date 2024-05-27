@@ -1,5 +1,11 @@
-import { Profile } from "../../components";
+import { Footer, Header, Profile } from "../../components";
 
 export const ProfilePage = () => {
-  return <Profile />;
+  return (
+    <>
+      <Header />
+      <Profile />
+      <Footer />
+    </>
+  );
 };
