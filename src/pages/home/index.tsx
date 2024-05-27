@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Header } from "../../components";
+import { Footer, Header } from "../../components";
 
 export const HomePage = () => {
   return (
@@ -28,11 +28,7 @@ export const HomePage = () => {
           </div>
         ))}
       </div>
-      <footer>
-        <Link to=" ">Menu 1</Link>
-        <Link to="">Menu 2</Link>
-        <Link to="">Menu 3</Link>
-      </footer>
+      <Footer />
     </>
   );
 };

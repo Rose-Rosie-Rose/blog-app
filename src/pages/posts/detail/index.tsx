@@ -1,5 +1,11 @@
-import { PostDetail } from "../../../components";
+import { Footer, Header, PostDetail } from "../../../components";
 
 export const DetailPage = () => {
-  return <PostDetail />;
+  return (
+    <>
+      <Header />
+      <PostDetail />
+      <Footer />
+    </>
+  );
 };
