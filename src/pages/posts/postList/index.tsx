@@ -1,3 +1,11 @@
+import { Footer, Header, PostList } from "../../../components";
+
 export const PostListPage = () => {
-  return <h1>Post List Page</h1>;
+  return (
+    <>
+      <Header />
+      <PostList hasNavigation={false} />
+      <Footer />
+    </>
+  );
 };
