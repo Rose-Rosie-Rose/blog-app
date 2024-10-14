@@ -1,3 +1,11 @@
+import { Footer, Header } from "../../../components";
+
 export const PostNewPage = () => {
-  return <h1>Post New Page</h1>;
+  return (
+    <>
+      <Header />
+      <div>Post Form</div>
+      <Footer />
+    </>
+  );
 };
