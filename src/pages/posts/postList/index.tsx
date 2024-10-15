@@ -1,4 +1,4 @@
-import { Footer, Header, PostList } from "../../../components";
+import { Footer, Header, PostList } from "components";
 
 export const PostListPage = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Router } from "./components";
+import { Router } from "components";
 
 const App = () => {
   return (
