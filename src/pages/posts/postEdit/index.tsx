@@ -1,3 +1,10 @@
+import { Header, PostForm } from "components";
+
 export const PostEditPage = () => {
-  return <h1>Post Edit Page</h1>;
+  return (
+    <>
+      <Header />
+      <PostForm />
+    </>
+  );
 };
