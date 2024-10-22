@@ -9,7 +9,7 @@ import {
   PostNewPage,
   ProfilePage,
   SignUpPage,
-} from "../pages";
+} from "pages";
 
 export const Router = () => {
   return (
