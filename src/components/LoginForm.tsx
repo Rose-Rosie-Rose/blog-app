@@ -14,7 +14,7 @@ export const LoginForm = () => {
       </div>
       <div className="form__block">
         계정이 없으신가요?
-        <Link to="/signup" className="form__ink">
+        <Link to="/signup" className="form__link">
           회원가입하기
         </Link>
       </div>
