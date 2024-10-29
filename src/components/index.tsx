@@ -7,4 +7,4 @@ export * from "./PostList";
 export * from "./Carousel";
 export * from "./PostForm";
 export * from "./LoginForm";
-export * from "./SignupForm";
+export * from "./SignUpForm";

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const SignupForm = () => {
+export const SignUpForm = () => {
   return (
     <form action="posts" method="POST" className="form form--lg">
       <h1 className="form__title">회원가입</h1>

@@ -1,10 +1,10 @@
-import { Header, SignupForm } from "components";
+import { Header, SignUpForm } from "components";
 
 export const SignUpPage = () => {
   return (
     <>
       <Header />
-      <SignupForm />
+      <SignUpForm />
     </>
   );
 };
