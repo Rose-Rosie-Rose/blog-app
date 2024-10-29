@@ -1,11 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { app } from "firebaseApp";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const SignUpForm = () => {
   const [error, setError] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth(app);
+
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -47,7 +61,7 @@ export const SignUpForm = () => {
   };
 
   return (
-    <form action="posts" method="POST" className="form form--lg">
+    <form onSubmit={onSubmitHandler} className="form form--lg">
       <h1 className="form__title">회원가입</h1>
       <div className="form__block">
         <label htmlFor="email">이메일</label>
