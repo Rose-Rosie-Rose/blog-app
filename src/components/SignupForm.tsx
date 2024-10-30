@@ -32,10 +32,14 @@ export const SignUpForm = () => {
 
     if (name === "email") {
       setEmail(value);
+
       const validRegex =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
       if (!value?.match(validRegex)) {
         setError("이메일 형식이 올바르지 않습니다.");
+      } else {
+        setError("");
       }
     }
 
