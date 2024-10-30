@@ -1,10 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { app } from "firebaseApp";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const loginOnSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth(app);
+      await signInWithEmailAndPassword(auth, email, password);
+
+      toast.success("로그인에 성공했습니다.");
+    } catch (error: any) {
+      toast.error(error?.code);
+      console.log(error);
+    }
+  };
 
   const loginInputOnChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -19,11 +36,11 @@ export const LoginForm = () => {
       const validRegex =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-        if (!value?.match(validRegex)) {
-          setError("이메일 형식이 올바르지 않습니다.");
-        } else {
-          setError("");
-        }
+      if (!value?.match(validRegex)) {
+        setError("이메일 형식이 올바르지 않습니다.");
+      } else {
+        setError("");
+      }
     }
 
     if (name === "password") {
@@ -38,7 +55,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form action="posts" method="POST" className="form form--lg">
+    <form onSubmit={loginOnSubmitHandler} className="form form--lg">
       <h1 className="form__title">로그인</h1>
       <div className="form__block">
         <label htmlFor="email">이메일</label>
