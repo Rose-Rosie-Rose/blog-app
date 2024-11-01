@@ -8,3 +8,4 @@ export * from "./Carousel";
 export * from "./PostForm";
 export * from "./LoginForm";
 export * from "./SignUpForm";
+export * from "./Loader";
