@@ -1,3 +1,10 @@
+import { Header, SignUpForm } from "components";
+
 export const SignUpPage = () => {
-  return <h1>Sign Up Page</h1>;
+  return (
+    <>
+      <Header />
+      <SignUpForm />
+    </>
+  );
 };

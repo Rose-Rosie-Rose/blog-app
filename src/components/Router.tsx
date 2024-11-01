@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import {
   HomePage,
@@ -11,19 +10,31 @@ import {
   SignUpPage,
 } from "pages";
 
-export const Router = () => {
+interface RouterProps {
+  isAuthenticated: boolean;
+}
+
+export const Router = ({ isAuthenticated }: RouterProps) => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/posts" element={<PostListPage />} />
-        <Route path="/posts/:id" element={<DetailPage />} />
-        <Route path="/posts/new" element={<PostNewPage />} />
-        <Route path="/posts/edit/:ud" element={<PostEditPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
+        {isAuthenticated ? (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/posts" element={<PostListPage />} />
+            <Route path="/posts/:id" element={<DetailPage />} />
+            <Route path="/posts/new" element={<PostNewPage />} />
+            <Route path="/posts/edit/:ud" element={<PostEditPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </>
+        ) : (
+          <>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/*" element={<LoginPage />} />
+          </>
+        )}
       </Routes>
     </>
   );
