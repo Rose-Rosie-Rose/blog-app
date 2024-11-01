@@ -29,7 +29,7 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      {init ? <Router isAuthenticated={isAuthenticated} /> : <Loader/>}
+      {init ? <Router isAuthenticated={isAuthenticated} /> : <Loader />}
     </>
   );
 };
