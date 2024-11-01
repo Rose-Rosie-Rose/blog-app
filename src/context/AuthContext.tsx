@@ -1,12 +1,12 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "firebaseApp";
 
 interface AuthProps {
   children: ReactNode;
 }
 
-export const AuthContext = createContext({
+const AuthContext = createContext({
   user: null as User | null,
 });
 
@@ -30,3 +30,5 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthContext;
