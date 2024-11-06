@@ -24,7 +24,7 @@ export const Router = ({ isAuthenticated }: RouterProps) => {
             <Route path="/posts" element={<PostListPage />} />
             <Route path="/posts/:id" element={<DetailPage />} />
             <Route path="/posts/new" element={<PostNewPage />} />
-            <Route path="/posts/edit/:ud" element={<PostEditPage />} />
+            <Route path="/posts/edit/:id" element={<PostEditPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
