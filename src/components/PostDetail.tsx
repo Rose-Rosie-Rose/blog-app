@@ -12,7 +12,7 @@ export const PostDetail = () => {
           <div className="post__profile-box">
             <div className="post__profile" />
             <div className="post__author-name">작성자이름</div>
-            <div className="post__date">2024.05.23 목F요일</div>
+            <div className="post__date">2024.05.23 목요일</div>
           </div>
           <div className="post__utils-box">
             <div className="post__delete">삭제</div>
