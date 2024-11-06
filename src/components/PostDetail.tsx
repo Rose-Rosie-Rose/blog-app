@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const PostDetail = () => {
+  const params = useParams();
+
+  console.log(params);
+
   return (
     <>
       <div className="post__detail">

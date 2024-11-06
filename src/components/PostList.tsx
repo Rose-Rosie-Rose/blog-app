@@ -11,7 +11,7 @@ interface PostListProps {
 type TabType = "all" | "my";
 
 interface PostProps {
-  id: string;
+  id?: string;
   title: string;
   email: string;
   summary: string;
@@ -21,7 +21,7 @@ interface PostProps {
 
 export const PostList = ({ hasNavigation = true }: PostListProps) => {
   const [activeTab, setActiveTab] = useState<TabType>("all");
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<PostProps[]>([]);
   const { user } = useContext(AuthContext);
 
   const getPosts = async () => {
@@ -61,21 +61,21 @@ export const PostList = ({ hasNavigation = true }: PostListProps) => {
         {posts?.length > 0 ? (
           posts?.map((post, index) => (
             <div key={post?.id} className="post__box">
-              <Link to={`/posts/${index}`}>
+              <Link to={`/posts/${post?.id}`}>
                 <div className="post__profile-box">
                   <div className="post__profile" />
                   <div className="post__author-name">{post?.email}</div>
-                  <div className="post__date">{post?.createAt}</div>
+                  <div className="post__date">{post?.createdAt}</div>
                 </div>
                 <div className="post__title">{post?.title}</div>
-                <div className="post__text">{post?.content}</div>
+                <div className="post__text">{post?.summary}</div>
               </Link>
               {post?.email === user?.email && (
                 <div className="post__utils-box">
                   <div className="post__delete">삭제</div>
-                  <div className="post__edit">
-                    <Link to={`/posts/edit/${post?.id}`}>수정</Link>
-                  </div>
+                  <Link to={`/posts/edit/${post?.id}`} className="post__edit">
+                    수정
+                  </Link>
                 </div>
               )}
             </div>
