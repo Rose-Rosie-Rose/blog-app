@@ -17,6 +17,8 @@ export interface PostProps {
   summary: string;
   content: string;
   createdAt: string;
+  updatedAt: string;
+  uid: string;
 }
 
 export const PostList = ({ hasNavigation = true }: PostListProps) => {
