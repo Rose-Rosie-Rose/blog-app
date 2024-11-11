@@ -1,5 +1,12 @@
 import AuthContext from "context/AuthContext";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "firebaseApp";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -28,9 +35,11 @@ export const PostList = ({ hasNavigation = true }: PostListProps) => {
   const { user } = useContext(AuthContext);
 
   const getPosts = async () => {
-    const datas = await getDocs(collection(db, "posts"));
-
     setPosts([]);
+
+    let postsRef = collection(db, "posts");
+    let postQuery = query(postsRef, orderBy("createdAt", "asc"));
+    const datas = await getDocs(postQuery);
 
     datas?.forEach((doc) => {
       const dataObj = { ...doc.data(), id: doc.id };
@@ -47,6 +56,8 @@ export const PostList = ({ hasNavigation = true }: PostListProps) => {
       getPosts();
     }
   };
+
+  console.log(posts);
 
   useEffect(() => {
     getPosts();
