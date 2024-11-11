@@ -29,7 +29,16 @@ export interface PostProps {
   createdAt: string;
   updatedAt: string;
   uid: string;
+  category: CategoryType;
 }
+
+export type CategoryType = "Frontend" | "Backend" | "Web" | "Native";
+export const CATEGORIES: CategoryType[] = [
+  "Frontend",
+  "Backend",
+  "Web",
+  "Native",
+];
 
 export const PostList = ({
   hasNavigation = true,
