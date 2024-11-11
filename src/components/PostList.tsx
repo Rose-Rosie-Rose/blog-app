@@ -6,6 +6,7 @@ import {
   getDocs,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import { db } from "firebaseApp";
 import { useContext, useEffect, useState } from "react";
@@ -14,6 +15,7 @@ import { toast } from "react-toastify";
 
 interface PostListProps {
   hasNavigation?: boolean;
+  defaultTab?: TabType;
 }
 
 type TabType = "all" | "my";
@@ -29,8 +31,11 @@ export interface PostProps {
   uid: string;
 }
 
-export const PostList = ({ hasNavigation = true }: PostListProps) => {
-  const [activeTab, setActiveTab] = useState<TabType>("all");
+export const PostList = ({
+  hasNavigation = true,
+  defaultTab = "all",
+}: PostListProps) => {
+  const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
   const [posts, setPosts] = useState<PostProps[]>([]);
   const { user } = useContext(AuthContext);
 
@@ -38,7 +43,18 @@ export const PostList = ({ hasNavigation = true }: PostListProps) => {
     setPosts([]);
 
     let postsRef = collection(db, "posts");
-    let postQuery = query(postsRef, orderBy("createdAt", "asc"));
+    let postQuery;
+
+    if (activeTab === "my" && user) {
+      postQuery = query(
+        postsRef,
+        where("uid", "==", user.uid),
+        orderBy("createdAt", "asc")
+      );
+    } else {
+      postQuery = query(postsRef, orderBy("createdAt", "asc"));
+    }
+
     const datas = await getDocs(postQuery);
 
     datas?.forEach((doc) => {
@@ -61,7 +77,8 @@ export const PostList = ({ hasNavigation = true }: PostListProps) => {
 
   useEffect(() => {
     getPosts();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
 
   return (
     <>
