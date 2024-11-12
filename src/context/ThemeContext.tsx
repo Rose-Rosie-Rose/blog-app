@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 
-const ThemeContext = createContext({
+export const ThemeContext = createContext({
   theme: "light",
   toggleMode: () => {},
 });
