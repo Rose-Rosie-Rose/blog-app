@@ -15,10 +15,8 @@ import { toast } from "react-toastify";
 
 interface PostListProps {
   hasNavigation?: boolean;
-  defaultTab?: TabType;
+  defaultTab?: TabType | CategoryType;
 }
-
-type TabType = "all" | "my";
 
 export interface PostProps {
   id?: string;
@@ -27,10 +25,12 @@ export interface PostProps {
   summary: string;
   content: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   uid: string;
-  category: CategoryType;
+  category?: CategoryType;
 }
+
+type TabType = "all" | "my";
 
 export type CategoryType = "Frontend" | "Backend" | "Web" | "Native";
 export const CATEGORIES: CategoryType[] = [
@@ -44,28 +44,33 @@ export const PostList = ({
   hasNavigation = true,
   defaultTab = "all",
 }: PostListProps) => {
-  const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
+  const [activeTab, setActiveTab] = useState<TabType | CategoryType>(
+    defaultTab
+  );
   const [posts, setPosts] = useState<PostProps[]>([]);
   const { user } = useContext(AuthContext);
 
   const getPosts = async () => {
     setPosts([]);
-
     let postsRef = collection(db, "posts");
-    let postQuery;
+    let postsQuery;
 
     if (activeTab === "my" && user) {
-      postQuery = query(
+      postsQuery = query(
         postsRef,
         where("uid", "==", user.uid),
         orderBy("createdAt", "asc")
       );
+    } else if (activeTab === "all") {
+      postsQuery = query(postsRef, orderBy("createdAt", "asc"));
     } else {
-      postQuery = query(postsRef, orderBy("createdAt", "asc"));
+      postsQuery = query(
+        postsRef,
+        where("category", "==", activeTab),
+        orderBy("createdAt", "asc")
+      );
     }
-
-    const datas = await getDocs(postQuery);
-
+    const datas = await getDocs(postsQuery);
     datas?.forEach((doc) => {
       const dataObj = { ...doc.data(), id: doc.id };
       setPosts((prev) => [...prev, dataObj as PostProps]);
@@ -81,8 +86,6 @@ export const PostList = ({
       getPosts();
     }
   };
-
-  console.log(posts);
 
   useEffect(() => {
     getPosts();
@@ -107,11 +110,23 @@ export const PostList = ({
           >
             나의 글
           </div>
+          {CATEGORIES?.map((category) => (
+            <div
+              key={category}
+              role="presentation"
+              onClick={() => setActiveTab(category)}
+              className={
+                activeTab === category ? "post__navigation--active" : ""
+              }
+            >
+              {category}
+            </div>
+          ))}
         </div>
       )}
       <div className="post__list">
         {posts?.length > 0 ? (
-          posts?.map((post, index) => (
+          posts?.map((post) => (
             <div key={post?.id} className="post__box">
               <Link to={`/posts/${post?.id}`}>
                 <div className="post__profile-box">
