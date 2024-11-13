@@ -71,13 +71,13 @@ export const Comments = () => {
             onChange={onChange}
           />
         </div>
-        <div className="form__block">
+        <div className="form__block form__block-reverse">
           <input type="submit" className="form__btn-submit" value="입력" />
         </div>
       </form>
       <div className="comments__list">
         {COMMENTS?.map((comment) => (
-          <div key={comment.id} className="box">
+          <div key={comment.id} className="comment__box">
             <div className="comment__profile-box">
               <div className="comment__email">{comment?.email}</div>
               <div className="comment__date">{comment?.createAt}</div>
