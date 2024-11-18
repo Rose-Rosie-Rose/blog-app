@@ -80,16 +80,19 @@ export const Comments = ({ post, getPost }: CommentsProps) => {
         </div>
       </form>
       <div className="comments__list">
-        {post?.comments?.map((comment) => (
-          <div key={comment.createAt} className="comment__box">
-            <div className="comment__profile-box">
-              <div className="comment__email">{comment?.email}</div>
-              <div className="comment__date">{comment?.createAt}</div>
-              <div className="comment__delete">삭제</div>
+        {post?.comments
+          ?.slice(0)
+          ?.reverse()
+          .map((comment) => (
+            <div key={comment.createAt} className="comment__box">
+              <div className="comment__profile-box">
+                <div className="comment__email">{comment?.email}</div>
+                <div className="comment__date">{comment?.createAt}</div>
+                <div className="comment__delete">삭제</div>
+              </div>
+              <div className="comment__text">{comment?.content}</div>
             </div>
-            <div className="comment__text">{comment?.content}</div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
