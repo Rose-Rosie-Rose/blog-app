@@ -5,56 +5,12 @@ import { db } from "firebaseApp";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
 
-const COMMENTS = [
-  {
-    id: 1,
-    email: "test@test.com",
-    comment: "댓글입니다 1",
-    createAt: "2024-11-13",
-  },
-  {
-    id: 2,
-    email: "test@test.com",
-    comment: "댓글입니다 2",
-    createAt: "2024-11-13",
-  },
-  {
-    id: 3,
-    email: "test@test.com",
-    comment: "댓글입니다 3",
-    createAt: "2024-11-13",
-  },
-  {
-    id: 4,
-    email: "test@test.com",
-    comment: "댓글입니다 4",
-    createAt: "2024-11-13",
-  },
-  {
-    id: 5,
-    email: "test@test.com",
-    comment: "댓글입니다 5",
-    createAt: "2024-11-13",
-  },
-  {
-    id: 6,
-    email: "test@test.com",
-    comment: "댓글입니다 6",
-    createAt: "2024-11-13",
-  },
-  {
-    id: 7,
-    email: "test@test.com",
-    comment: "댓글입니다 7",
-    createAt: "2024-11-13",
-  },
-];
-
 interface CommentsProps {
   post: PostProps;
+  getPost: (id: string) => Promise<void>;
 }
 
-export const Comments = ({ post }: CommentsProps) => {
+export const Comments = ({ post, getPost }: CommentsProps) => {
   const [comment, setComment] = useState("");
   const { user } = useContext(AuthContext);
 
@@ -95,6 +51,7 @@ export const Comments = ({ post }: CommentsProps) => {
               second: "2-digit",
             }),
           });
+          await getPost(post.id);
         }
       }
       toast.success("댓글을 생성했습니다.");
@@ -123,14 +80,14 @@ export const Comments = ({ post }: CommentsProps) => {
         </div>
       </form>
       <div className="comments__list">
-        {COMMENTS?.map((comment) => (
-          <div key={comment.id} className="comment__box">
+        {post?.comments?.map((comment) => (
+          <div key={comment.createAt} className="comment__box">
             <div className="comment__profile-box">
               <div className="comment__email">{comment?.email}</div>
               <div className="comment__date">{comment?.createAt}</div>
               <div className="comment__delete">삭제</div>
             </div>
-            <div className="comment__text">{comment?.comment}</div>
+            <div className="comment__text">{comment?.content}</div>
           </div>
         ))}
       </div>
