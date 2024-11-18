@@ -9,3 +9,4 @@ export * from "./PostForm";
 export * from "./LoginForm";
 export * from "./SignUpForm";
 export * from "./Loader";
+export * from "./Comments";
